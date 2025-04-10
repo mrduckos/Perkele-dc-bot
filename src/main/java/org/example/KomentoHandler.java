@@ -2,6 +2,7 @@ package org.example;
 
 import discord4j.core.GatewayDiscordClient;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import org.example.BJ.BlackjackKomento;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +14,7 @@ public class KomentoHandler {
         registerKomento(new PingPong());
         registerKomento(new Minecraft());
         registerKomento(new McInfo());
+        registerKomento(new BlackjackKomento());
     }
 
     private void registerKomento(Komento komento) {
