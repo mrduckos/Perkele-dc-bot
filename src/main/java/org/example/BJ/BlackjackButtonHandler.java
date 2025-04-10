@@ -23,9 +23,9 @@ public class BlackjackButtonHandler {
         if (customId.startsWith("hit_")) {
             peli.getPelaaja().lisaaKortti(peli.getDeck().nosta());
 
+
             int pisteet = peli.getPelaaja().laskePisteet();
             if (pisteet > 21) {
-                peli.getDealer().pelaa(peli.getDeck());
                 String dealerKasi = peli.getDealer().kasiMerkkijonona();
                 String tulos = peli.tarkistaTulos();
 

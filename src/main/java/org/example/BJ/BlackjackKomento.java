@@ -31,7 +31,7 @@ public class BlackjackKomento implements Komento {
         Dealer dealer = peli.getDealer();
 
         String pelaajaKasi = pelaaja.kasiMerkkijonona();
-        String dealerKortti = dealer.getKasi().get(0).toString();
+        String dealerKortti = dealer.getKasi().getFirst().toString();
 
         return event.getMessage().getChannel()
                 .flatMap(channel -> channel.createMessage(msg -> msg
