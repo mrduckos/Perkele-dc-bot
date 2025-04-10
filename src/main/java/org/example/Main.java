@@ -3,7 +3,9 @@ package org.example;
 
 import discord4j.core.DiscordClientBuilder;
 import discord4j.core.GatewayDiscordClient;
+import discord4j.core.event.domain.interaction.ButtonInteractionEvent;
 import discord4j.core.event.domain.message.MessageCreateEvent;
+import org.example.BJ.BlackjackButtonHandler;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -20,6 +22,8 @@ public class Main {
                 .block();
 
         KomentoHandler komentoHandler = new KomentoHandler(client);
+
+        client.on(ButtonInteractionEvent.class, BlackjackButtonHandler::handle).subscribe();
 
         client.getEventDispatcher().on(MessageCreateEvent.class)
                 .subscribe(e -> {
