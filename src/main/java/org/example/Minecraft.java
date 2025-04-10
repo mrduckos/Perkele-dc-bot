@@ -21,10 +21,12 @@ public class Minecraft implements Komento {
             "⬜⬜⬜\uD83D\uDFE5\uD83D\uDFE5⬜⬜⬜\n" +
             "⬜⬜⬜\uD83D\uDFE5\uD83D\uDFE5⬜⬜⬜\n";
 
+    LaskuriData data = LaskuriTallennus.lataa();
+
     private String kumpi;
 
-    public int zombLaskuri;
-    public int kanaLaskuri;
+    public int zombLaskuri = data.zombit;
+    public int kanaLaskuri = data.kanat;
 
     @Override
     public String getNimi() {
