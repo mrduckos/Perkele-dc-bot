@@ -30,7 +30,7 @@ public class BlackjackButtonHandler {
                 String tulos = peli.tarkistaTulos();
 
                 return event.edit()
-                        .withContent("HÄVISIT! Sinun kätesi: " + peli.getPelaaja().kasiMerkkijonona() +
+                        .withContent(peli.getPelaaja().getNimi() + "HÄVISIT!" + " käsi: " + peli.getPelaaja().kasiMerkkijonona() +
                                 " (" + pisteet + " pistettä)\n" +
                                 "Jakajan käsi: " + dealerKasi + " (" + peli.getDealer().laskePisteet() + ")\n" +
                                 tulos)
@@ -38,13 +38,13 @@ public class BlackjackButtonHandler {
             }
 
             return event.edit()
-                    .withContent("Sinun kätesi: " + peli.getPelaaja().kasiMerkkijonona() +
+                    .withContent(event.getInteraction().getUser().getUsername() + " käsi: " + peli.getPelaaja().kasiMerkkijonona() +
                             " (" + pisteet + " pistettä)\n" +
                             "Jakajan näkyvä kortti: " + peli.getDealer().getKasi().get(0) + "\n" +
                             "Valitse toiminto:")
                     .withComponents(ActionRow.of(
-                            Button.primary("hit_" + userId, "🔼 Ota kortti"),
-                            Button.secondary("stand_" + userId, "✋ Jää")
+                            Button.primary("hit_" + userId, "🔼 Hit"),
+                            Button.danger("stand_" + userId, "✋ Stand")
                     ));
         }
 
@@ -56,7 +56,7 @@ public class BlackjackButtonHandler {
             String tulos = peli.tarkistaTulos();
 
             return event.edit()
-                    .withContent("Sinun kätesi: " + pelaajaKasi + " (" + peli.getPelaaja().laskePisteet() + " pistettä)\n" +
+                    .withContent(peli.getPelaaja().getNimi() + " käsi: " + pelaajaKasi + " (" + peli.getPelaaja().laskePisteet() + " pistettä)\n" +
                             "Jakajan käsi: " + dealerKasi + " (" + peli.getDealer().laskePisteet() + ")\n" +
                             tulos)
                     .withComponents();

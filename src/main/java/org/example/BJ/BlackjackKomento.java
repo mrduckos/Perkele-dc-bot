@@ -21,9 +21,10 @@ public class BlackjackKomento implements Komento {
 
     @Override
     public Mono<Void> execute(MessageCreateEvent event) {
-        String userId = event.getMessage().getAuthor().map(u -> u.getId().asString()).orElse("tuntematon");
+        String userId = event.getMessage().getAuthor().map(u -> u.getId().asString()).orElse("Pelaaja");
+        String pelaajaNimi = event.getMessage().getAuthor().get().getUsername();
 
-        BlackjackPeli peli = new BlackjackPeli();
+        BlackjackPeli peli = new BlackjackPeli(new Pelaaja(pelaajaNimi), new Dealer("(huumeiden) jakaja"));
         pelit.put(userId, peli);
 
         Pelaaja pelaaja = peli.getPelaaja();
@@ -34,11 +35,11 @@ public class BlackjackKomento implements Komento {
 
         return event.getMessage().getChannel()
                 .flatMap(channel -> channel.createMessage(msg -> msg
-                        .setContent("Sinun kätesi: " + pelaajaKasi + " (" + pelaaja.laskePisteet() + " pistettä)\n" +
+                        .setContent(pelaajaNimi + " käsi: " + pelaajaKasi + " (" + pelaaja.laskePisteet() + " pistettä)\n" +
                                     "Jakajan näkyvä kortti: " + dealerKortti)
                         .setComponents(ActionRow.of(
-                                Button.primary("hit_" + userId, "🔼 Ota kortti"),
-                                Button.danger("stand_" + userId, "✋ Jää")
+                                Button.primary("hit_" + userId, "🔼 Hit"),
+                                Button.danger("stand_" + userId, "✋ Stand")
                         ))
                 )).then();
     }

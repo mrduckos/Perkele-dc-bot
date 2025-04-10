@@ -4,7 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pelaaja {
+    private final String nimi;
     protected final List<Kortti> kasi = new ArrayList<>();
+
+    public Pelaaja(String nimi) {
+        this.nimi = nimi;
+    }
+
+    public String getNimi() {
+        return nimi;
+    }
 
     public void lisaaKortti(Kortti kortti) {
         kasi.add(kortti);
