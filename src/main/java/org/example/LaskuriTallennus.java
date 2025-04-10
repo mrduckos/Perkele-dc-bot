@@ -8,7 +8,6 @@ public class LaskuriTallennus {
     public static void tallenna(LaskuriData data) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(TIEDOSTO_NIMI))) {
             oos.writeObject(data);
-            System.out.println("Tallennettu!");
         } catch (IOException e) {
             e.printStackTrace();
         }
